@@ -1,0 +1,26 @@
+# my_playbook.yml
+
+---
+- name: My Ansible Playbook
+  hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    ansible_become_password: "Kavisri@24"
+
+  tasks:
+    - name: Create a directory named my_directory
+      file:
+        path: "{{ playbook_dir }}/my_directory"
+        state: directory
+
+    - name: Create a file in the directory
+      file:
+        path: "{{ playbook_dir }}/my_directory/73772121149.txt"
+        state: touch
+
+    - name: Install tree package
+      apt:
+        name: tree
+        state: present
